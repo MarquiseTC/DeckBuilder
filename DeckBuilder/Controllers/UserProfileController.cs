@@ -1,4 +1,5 @@
-﻿using DeckBuilder.Repositories;
+﻿using DeckBuilder.Models;
+using DeckBuilder.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,5 +27,15 @@ namespace DeckBuilder.Controllers
             }
             return Ok(user);
         }
+
+        [HttpPost]
+        public IActionResult Post(UserProfile userProfile)
+        {
+            userProfile.DateCreated = DateTime.Now;
+            
+            _userRepository.Add(userProfile);
+            return CreatedAtAction("GetByEmail", new { email = userProfile.Email }, userProfile);
+        }
+
     }
 }

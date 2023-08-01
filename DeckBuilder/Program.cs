@@ -15,6 +15,7 @@ namespace DeckBuilder
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IUserProfileRepository, UserProfileRepository>();
+            builder.Services.AddTransient<IDeckRepository, DeckRepository>();
 
             var app = builder.Build();
 

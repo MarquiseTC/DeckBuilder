@@ -67,3 +67,8 @@ C:\Users\quise\workspace\DeckBuilder\DeckBuilder\obj\Debug\net6.0\refint\DeckBui
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\obj\Debug\net6.0\DeckBuilder.pdb
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\obj\Debug\net6.0\DeckBuilder.genruntimeconfig.cache
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\obj\Debug\net6.0\ref\DeckBuilder.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\Flurl.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\Flurl.Http.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\MtgApiManager.Lib.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\System.Text.Json.dll
