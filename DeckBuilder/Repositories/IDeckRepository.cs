@@ -6,9 +6,10 @@ namespace DeckBuilder.Repositories
     {
         Deck GetDeckById(int id);
 
-        //    void Add(Deck deck);
+        void Add(Deck deck);
         //    void Update(Deck deck);
-        //    void Delete(int id);
-        //
+        void Delete(int id);
+        
+        public List<Deck> GetAllDecks();
     }
 }

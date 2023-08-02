@@ -14,6 +14,13 @@ namespace DeckBuilder.Controllers
         {
             _deckRepository = deckRepository;
         }
+        
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var decks = _deckRepository.GetAllDecks();
+            return Ok(decks);
+        }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id) 
@@ -29,5 +36,23 @@ namespace DeckBuilder.Controllers
             }
             return Ok(deck);
         }
+
+        [HttpPost]
+        public IActionResult Post(Deck deck) 
+        { 
+        _deckRepository.Add(deck);
+            return CreatedAtAction("Get", new {id = deck.Id}, deck);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id) 
+        {
+        _deckRepository.Delete(id);
+            return NoContent();
+        }
+
+        
+
     }
+
 }
