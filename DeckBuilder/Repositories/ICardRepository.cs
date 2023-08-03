@@ -1,6 +1,9 @@
-﻿namespace DeckBuilder.Repositories
+﻿using DeckBuilder.Models;
+
+namespace DeckBuilder.Repositories
 {
     public interface ICardRepository
     {
+        
     }
 }

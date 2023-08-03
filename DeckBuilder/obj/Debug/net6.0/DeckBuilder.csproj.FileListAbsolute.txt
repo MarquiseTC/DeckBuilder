@@ -72,3 +72,6 @@ C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\Flurl.dll
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\Flurl.Http.dll
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\MtgApiManager.Lib.dll
 C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\RestSharp.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\quise\workspace\DeckBuilder\DeckBuilder\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

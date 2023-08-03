@@ -65,28 +65,28 @@ namespace DeckBuilder.Repositories
             }
         }
 
-        //public void Update(UserProfile userProfile)
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //         UPDATE UserProfile
-        //         SET Name = @Name
-        //             Email = @Email
-        //         WHERE Id = @Id
-        //        ";
+        public void Update(UserProfile userProfile)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                 UPDATE UserProfile
+                 SET Name = @Name
+                    Email = @Email
+                WHERE Id = @Id
+                ";
 
-        //            DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
-        //            DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-        //            DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
+                   DbUtils.AddParameter(cmd, "@Name", userProfile.Name);
+                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
+                   DbUtils.AddParameter(cmd, "@DateCreated", userProfile.DateCreated);
 
-        //            cmd.ExecuteNonQuery();
-        //        }
-        //    }
-        //}
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 }

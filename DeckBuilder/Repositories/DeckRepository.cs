@@ -1,5 +1,6 @@
 ﻿using DeckBuilder.Models;
 using DeckBuilder.Utils;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using static DeckBuilder.Repositories.DeckRepository;
 
@@ -109,7 +110,7 @@ namespace DeckBuilder.Repositories
                 }
             }
         }
-
+                //This is the formatting seeing all decks with all the cards that they contain
         public List<Deck> GetAllDecks()
         {
             using (var conn = Connection)

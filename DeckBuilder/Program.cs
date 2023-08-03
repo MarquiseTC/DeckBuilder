@@ -16,6 +16,9 @@ namespace DeckBuilder
             builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             builder.Services.AddTransient<IDeckRepository, DeckRepository>();
+            builder.Services.AddTransient<ICardRepository, CardRepository>();
+
+
 
             var app = builder.Build();
 
@@ -24,6 +27,12 @@ namespace DeckBuilder
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors(options =>
+                {
+                    options.AllowAnyOrigin();
+                    options.AllowAnyMethod();
+                    options.AllowAnyHeader();
+                });
             }
 
             app.UseHttpsRedirection();
