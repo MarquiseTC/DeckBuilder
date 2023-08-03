@@ -36,7 +36,10 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
           
           
           <Button color="inherit" type="submit" onClick={() => navigate("/deck/create")}>New Deck</Button>
-          <Button color="inherit" type="submit" onClick={() => navigate("/decks")}>My Decks</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/decks")}>Community Decks</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/my-decks")}>My Decks</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/search")}>Search</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
           <Button color="inherit" type="submit" onClick={() =>{logout() ;setIsLoggedIn(false)}}>Logout</Button>
             </Typography>}</>             
         </Toolbar>
