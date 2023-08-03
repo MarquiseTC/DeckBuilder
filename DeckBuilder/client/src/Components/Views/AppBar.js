@@ -24,7 +24,7 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
 
  
   return (
-      <AppBar  sx={{ minHeight: ".1rem"}}  position="static" >
+      <AppBar  sx={{ minHeight: ".1rem"}}  position="relative" >
         
         
         <Toolbar>
@@ -43,10 +43,10 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
 
         {!isLoggedIn &&
         <>
-        <Typography variant="h10" component="div" sx={{ flexGrow: 1 }}>
+        
         <Button color="inherit" type="submit" onClick={() => navigate("/login")}>Login</Button>
         <Button color="inherit" type="submit" onClick={() => navigate("/register")}>Register</Button>
-      </Typography> </> }
+      </> }
       </AppBar>
   );
 }
