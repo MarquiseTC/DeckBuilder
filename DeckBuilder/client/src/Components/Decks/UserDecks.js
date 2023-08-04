@@ -21,7 +21,7 @@ export const UserDecks = () => {
     }, [dbUserObject.id]);
 
     return (<>
-    <BasicTextFields></BasicTextFields>
+    
         <div className="deck-list">
           <div className="row justify-content-center">
             <div className="cards-column">

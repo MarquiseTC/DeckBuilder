@@ -1,19 +1,23 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { getAllDecks } from "../Managers/DeckManager";
+import { getAllDecks, searchDecks } from "../Managers/DeckManager";
 import { Deck } from "./Deck";
-import BasicTextFields from "../Cards/BasicSearch";
+import { BasicTextFields } from "../Cards/BasicSearch";
+import React from "react";
+
 
 
 export const DeckList = () => {
-    const navigate = useNavigate()
+    
     const [decks, setDecks] = useState([]);
+    
 
 
     const getDecks = () => {
         getAllDecks().then(allDecks => setDecks(allDecks));
-    }
+    };
 
+    
 
 useEffect(() => {
     getDecks();
@@ -27,7 +31,7 @@ return (<>
           
             {decks.map((deck) => {
               // console.log(post)
-              return  <Deck deck={deck} />
+              return  <Deck key={deck.id} deck={deck} />
             })}
           
         </div>

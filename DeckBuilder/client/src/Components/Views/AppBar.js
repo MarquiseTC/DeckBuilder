@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import { useNavigate} from 'react-router-dom';
 import { format } from 'date-fns';
 import { logout } from '../Managers/UserManager';
+import BasicTextFields from '../Cards/BasicSearch';
 
 ;
 
@@ -34,11 +35,11 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
           <Button color="inherit" type="submit" onClick={() => navigate("/")}>Deck Builder</Button> 
           Today is { format(new Date(), 'MMMM do Y')}
           
-          
+        
           <Button color="inherit" type="submit" onClick={() => navigate("/deck/create")}>New Deck</Button>
           <Button color="inherit" type="submit" onClick={() => navigate("/decks")}>Community Decks</Button>
           <Button color="inherit" type="submit" onClick={() => navigate("/my-decks")}>My Decks</Button>
-          <Button color="inherit" type="submit" onClick={() => navigate("/search")}>Search</Button>
+          
           <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
           <Button color="inherit" type="submit" onClick={() =>{logout() ;setIsLoggedIn(false)}}>Logout</Button>
             </Typography>}</>             

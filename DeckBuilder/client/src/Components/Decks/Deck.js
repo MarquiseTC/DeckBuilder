@@ -7,14 +7,14 @@ import { List, ListItem } from '@mui/material';
 
 export const Deck = ({deck}) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} >
       
       <CardContent    >
-                    <List>
-                        <ListItem>Title: {deck.name}</ListItem>
+                    <List >
+                        <ListItem>Name: {deck.name}</ListItem>
                         <ListItem>Format {deck.format}</ListItem>
                         <ListItem>Posted By: {deck.userProfile.name}</ListItem>
-                        <ListItem>{deck.cards.map(card => (
+                        <ListItem> {deck.cards.map(card => (
                             <div key ={card.Id}> <ul>
                             Card Name: {card.name}
                             ManaCost: {card.manaCost}

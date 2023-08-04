@@ -16,8 +16,8 @@ export const ApplicationViews = () => {
 			<Route path="/" element={<Hello/>}/>
 			<Route path="/decks" element={<DeckList/>}/>
 			<Route path="/my-decks" element={<UserDecks/>}/>
-			<Route path="/advanced" element={<MultilineTextFields/>}/>
-			<Route path="/search" element={<BasicTextFields/>}/>
+			{/* <Route path="/advanced" element={<MultilineTextFields/>}/>
+			<Route path="/search" element={<BasicTextFields/>}/> */}
 		</Routes>
 	
 	);
