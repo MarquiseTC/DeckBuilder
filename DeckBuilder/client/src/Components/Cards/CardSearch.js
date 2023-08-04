@@ -1,15 +1,17 @@
 import { useState } from "react"
 import { searchCards } from "../Managers/CardManager";
 
-import { Button, Card } from "reactstrap";
+import { Button, Card, Container } from "reactstrap";
 import  Box  from "@mui/material/Box";
 import  TextField  from "@mui/material/TextField";
 import { MagicCards } from "./Cards";
+import { useNavigate } from "react-router-dom";
 
 
  export const CardSearch = () => {
     const [cards, setCards] = useState([]);
     const [query, setQuery] = useState("")
+    const navigate = useNavigate()
 
 
 const searchAllCards = (e) => {
@@ -23,7 +25,7 @@ const searchAllCards = (e) => {
 return (
 <>
     
-    <Box
+    <Container 
           component="form"
           sx={{
             '& > :not(style)': { m: 1, width: '25ch' },
@@ -39,12 +41,13 @@ return (
             />
             
             <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllCards} >Search</Button>
+            <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
             <div className="deck-list">
       <div className="row justify-content-center">
         <div className="cards-column">
             <div id="stuff"></div>
         {cards.map((card) => {
-              console.log(card)
+              
               return  <MagicCards key={card.id} card={card} />
             })}
         
@@ -52,25 +55,9 @@ return (
         </div>
       </div>
     </div>
-           </Box> 
+          </Container> 
         
       
       </>
       )}
 
-// fetch("https://api.scryfall.com/cards/search?q=jace")
-//     .then( r=> r.json())
-//     .then(x => {
-//         // x.data.forEach(y => document.querySelector("#stuff").innerHTML += `<img src=${y.image_uris.normal}>`)
-//             console.log(x)
-        
-//     }
-//     )
-
-//         fetch ("https://api.scryfall.com/cards/search?q=wolf")
-//     .then((res) => res.json())
-//     .then(returnedItems => {  
-//        console.log(returnedItems);
-//        return returnedItems.name
-// })
- 

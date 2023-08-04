@@ -29,7 +29,7 @@ export const UserDecks = () => {
             <div className="cards-column">
               
                 {userDecks.map((deck) => {
-                //   console.log(deck)
+                
                   return  <Deck  deck={deck} />
                 })}
               

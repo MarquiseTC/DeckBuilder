@@ -61,8 +61,6 @@ useEffect(() => {
 }, [])
 
 return (<>
-{/* <BasicTextFields></BasicTextFields> */}
-{/* <ThemeProvider theme ={theme}> */}
 <Box
       component="form"
       sx={{
@@ -75,7 +73,7 @@ return (<>
     
      
     >
-      <TextField id="outlined-basic"  label="Search"  variant="outlined" 
+      <TextField id="outlined-basic"  label="Deck Search"  variant="outlined" 
         />
         
         <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllDecks} >Search</Button>
@@ -85,14 +83,14 @@ return (<>
         <div className="cards-column">
           
             {decks.map((deck) => {
-              // console.log(post)
+              
               return  <Deck key={deck.id} deck={deck} />
             })}
           
         </div>
       </div>
     </div>
-  {/* </ThemeProvider> */}
+
   </>
   )
 

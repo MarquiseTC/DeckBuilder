@@ -19,6 +19,7 @@ export const ApplicationViews = () => {
 			<Route path="/decks" element={<DeckList/>}/>
 			<Route path="/my-decks" element={<UserDecks/>}/>
 			<Route path="/search" element={<CardSearch/>}/> 
+			<Route path="/advanced" element={<MultilineTextFields/>}/> 
 			
 		</Routes>
 	
