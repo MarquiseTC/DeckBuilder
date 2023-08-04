@@ -11,21 +11,25 @@ import { useNavigate} from 'react-router-dom';
 import { format } from 'date-fns';
 import { logout } from '../Managers/UserManager';
 import BasicTextFields from '../Cards/BasicSearch';
-
-;
-
-
-
-
+import { ThemeProvider, createTheme } from '@mui/material';
+import { themeOptions } from './Styles';
+import { orange } from '@mui/material/colors';
 
 
 export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
   const navigate = useNavigate()
   
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: orange[200]
+      }
+    }})
 
  
   return (
-      <AppBar  sx={{ minHeight: ".1rem"}}  position="relative" >
+    <ThemeProvider theme={theme}>
+      <AppBar sx={{ minHeight: ".1rem"}}  position="relative"  >
         
         
         <Toolbar>
@@ -40,7 +44,7 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
           <Button color="inherit" type="submit" onClick={() => navigate("/decks")}>Community Decks</Button>
           <Button color="inherit" type="submit" onClick={() => navigate("/my-decks")}>My Decks</Button>
           
-          <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/search")}>Search</Button>
           <Button color="inherit" type="submit" onClick={() =>{logout() ;setIsLoggedIn(false)}}>Logout</Button>
             </Typography>}</>             
         </Toolbar>
@@ -48,9 +52,9 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
         {!isLoggedIn &&
         <>
         
-        <Button color="inherit" type="submit" onClick={() => navigate("/login")}>Login</Button>
-        <Button color="inherit" type="submit" onClick={() => navigate("/register")}>Register</Button>
+        <Button  type="submit" onClick={() => navigate("/login")}>Login</Button>
+        <Button type="submit" onClick={() => navigate("/register")}>Register</Button>
       </> }
       </AppBar>
-  );
+</ThemeProvider>  );
 }

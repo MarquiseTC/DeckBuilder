@@ -1,36 +1,23 @@
-// import { card } from "mtgsdk";
-// import React,{useEffect, useState} from "react";
+import React from "react";
+import Card  from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { CardMedia, List, ListItem } from "@mui/material";
 
-// const AsyncAwait = () => {
-//     const [cards, setCards] = useState([])
-//     const id = 2
-
-//     const fetchData = async () => {
-//         const response = await fetch(`https://api.scryfall.com/cards/multiverse/${id}`)
-//         const data = await response.json()
-//         setCards(data)
-//     }
-
-//     useEffect(() => {
-//         fetchData()
-//     }, [])
-
-//    console.log(cards)
-    
-// }
-
-// export default AsyncAwait
-
-import { card, set } from 'mtgsdk'
-
-card.find(3)
-.then(result => {
-    console.log(result.card.name) // "Black Lotus"
-})
-
-set.find('AER')
-.then(result => {
-    console.log(result.set.name) // "Aether Revolt"
-})
-
+export const MagicCards = ({card}) => {
+    console.log(card)
+    return (
+    <Card sx={{ maxWidth: 500 }} >
+        <div> <img src={card.image_uris.small}/> </div> 
+        
+        <CardContent>
+            <List>
+            <ListItem>Card Name: {card.name}</ListItem>
+            <ListItem>ManaCost: {card.mana_cost}</ListItem>
+            <ListItem>CMC: {card.cmc}</ListItem>
+            <ListItem>Colors: {card.colors}</ListItem>
+            
+            </List>
+        </CardContent>
+    </Card>
+)}
 

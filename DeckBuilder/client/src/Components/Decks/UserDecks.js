@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react"
 import { getDeckById } from "../Managers/DeckManager";
 import { Deck } from "./Deck";
-import BasicTextFields from "../Cards/BasicSearch";
+import BasicTextFields from "../Cards/CardSearch";
 
 export const UserDecks = () => {
     const [userDecks, setUserDecks] = useState([]);
@@ -19,6 +19,8 @@ export const UserDecks = () => {
             console.log("Can't fetch user decks:" , error)
         });
     }, [dbUserObject.id]);
+
+    
 
     return (<>
     
@@ -37,5 +39,5 @@ export const UserDecks = () => {
       
       </>)
 
-    
+
 }
