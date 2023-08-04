@@ -1,4 +1,6 @@
-﻿namespace DeckBuilder.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DeckBuilder.Models
 {
     public class Deck
     {
@@ -7,6 +9,7 @@
         public int UserProfileId { get; set; }
         public UserProfile? UserProfile { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public string Format { get; set; }

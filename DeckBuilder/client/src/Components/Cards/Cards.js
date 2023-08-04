@@ -20,3 +20,17 @@
 // }
 
 // export default AsyncAwait
+
+import { card, set } from 'mtgsdk'
+
+card.find(3)
+.then(result => {
+    console.log(result.card.name) // "Black Lotus"
+})
+
+set.find('AER')
+.then(result => {
+    console.log(result.set.name) // "Aether Revolt"
+})
+
+

@@ -2,6 +2,8 @@
 using DeckBuilder.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace DeckBuilder.Controllers
 {
@@ -51,7 +53,25 @@ namespace DeckBuilder.Controllers
             return NoContent();
         }
 
-        
+        [HttpGet("GetUserDecks/{id}")]
+        public IActionResult GetDeckByUserId(int id)
+        {
+            List<Deck> decks = _deckRepository.GetDeckByUserId(id);
+            if (decks == null)
+
+            {
+                return NotFound();
+            }
+
+            return Ok(decks);
+        }
+
+        [HttpGet("search")]
+        public IActionResult Search(string q, bool sortDesc)
+        {
+            return Ok(_deckRepository.Search(q, sortDesc));
+        }
+
 
     }
 
