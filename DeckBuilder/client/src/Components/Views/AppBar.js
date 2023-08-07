@@ -40,7 +40,7 @@ export const ButtonAppBar = ({isLoggedIn, setIsLoggedIn}) => {
           Today is { format(new Date(), 'MMMM do Y')}
           
         
-          <Button color="inherit" type="submit" onClick={() => navigate("/deck/create")}>New Deck</Button>
+          <Button color="inherit" type="submit" onClick={() => navigate("/create")}>New Deck</Button>
           <Button color="inherit" type="submit" onClick={() => navigate("/decks")}>Community Decks</Button>
           <Button color="inherit" type="submit" onClick={() => navigate("/my-decks")}>My Decks</Button>
           

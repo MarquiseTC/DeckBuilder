@@ -14,7 +14,7 @@ export const Deck = ({deck}) => {
       <CardContent   >
         
                     <List > 
-                        <Link onClick={() => navigate(`/deck/deck`)}> Name: {deck.name}</Link>
+                        <Link onClick={() => navigate(`/deck/:id`)}> Name: {deck.name}</Link>
                         <ListItem>Format: {deck.format}</ListItem>
                         <ListItem>Posted By: {deck.userProfile?.name}</ListItem>
                         {/* <ListItem> {deck.cards.map(card => (

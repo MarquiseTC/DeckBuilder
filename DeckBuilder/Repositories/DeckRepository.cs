@@ -90,10 +90,10 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO Deck (Name, Format, DateCreated)
+                    INSERT INTO Deck (Name, Format, DateCreated, UserProfileId)
                     OUTPUT INSERTED.ID 
-                    VALUES (@name, @format, @dateCreated)";
-                    //DbUtils.AddParameter(cmd, "@userProfileId", deck.UserProfileId);
+                    VALUES (@name, @format, @dateCreated, @userProfileId)";
+                    DbUtils.AddParameter(cmd, "@userProfileId", deck.UserProfileId);
                     DbUtils.AddParameter(cmd, "@name", deck.Name);
                     DbUtils.AddParameter(cmd, "@format", deck.Format);
                     DbUtils.AddParameter(cmd, "@dateCreated", deck.DateCreated);

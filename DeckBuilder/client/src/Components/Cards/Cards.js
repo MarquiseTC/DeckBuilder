@@ -3,13 +3,14 @@ import Card  from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardMedia, List, ListItem } from "@mui/material";
 import { Container } from "reactstrap";
+import { CardForm } from "./CardForm";
 
 export const MagicCards = ({card}) => {
     
     return (
         <Container>
     <Card sx={{ maxWidth: 500}} >
-        <div> <img src={card.image_uris?.normal}/> </div>  
+       {CardForm} <div> <img src={card.image_uris?.normal}/> </div>  
         
         {/* <CardContent>
             <List>
@@ -21,6 +22,7 @@ export const MagicCards = ({card}) => {
             
             </List>
         </CardContent> */}
+        
     </Card>
     </Container>
 )}

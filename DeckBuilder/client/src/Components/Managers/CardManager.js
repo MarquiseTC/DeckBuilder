@@ -6,6 +6,13 @@ export const addCard = (singleCard) => {
         headers:{
             "Content-Type": "application/json",
         },
-        body: json.stringify(singleCard),
+        body: JSON.stringify(singleCard),
     });
 };
+
+export const getAllCards = () => {
+    return fetch(baseUrl) 
+      .then((res) => res.json())
+  };
+
+  

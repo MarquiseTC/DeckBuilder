@@ -6,6 +6,7 @@ import  Box  from "@mui/material/Box";
 import  TextField  from "@mui/material/TextField";
 import { MagicCards } from "./Cards";
 import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 
  export const CardSearch = () => {
@@ -42,22 +43,17 @@ return (
             
             <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllCards} >Search</Button>
             <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
-            <div className="deck-list">
-      <div className="row justify-content-center">
-        <div className="cards-column">
-            <div id="Filteredstuff"></div>
-        {cards.map((card) => {
+          </Container>   
+          <Grid container spacing={3}>
+  {cards.map((card) => {
               
               return  <MagicCards key={card.id} card={card} />
-            })}
-        
+              
+            })} 
+           </Grid>  </>
           
-        </div>
-      </div>
-    </div>
-          </Container> 
         
       
-      </>
+    
       )}
 

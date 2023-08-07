@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react"
-import { getDeckById } from "../Managers/DeckManager";
+import { getDeckById, getUserDeckById } from "../Managers/DeckManager";
 import { Deck } from "./Deck";
 import BasicTextFields from "../Cards/CardSearch";
 
@@ -10,7 +10,7 @@ export const UserDecks = () => {
     const dbUserObject = JSON.parse(localDBUser)
 
     useEffect(() => {
-        getDeckById(dbUserObject.id)
+        getUserDeckById(dbUserObject.id)
         .then((data) => {
             setUserDecks(data)
         })

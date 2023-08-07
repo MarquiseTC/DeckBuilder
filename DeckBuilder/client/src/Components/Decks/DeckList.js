@@ -13,36 +13,7 @@ export const DeckList = () => {
     const [decks, setDecks] = useState([]);
     const [query, setQuery] = useState("");
     
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-      primary: {
-        main: '#bd0707',
-      },
-      secondary: {
-        main: '#442b4e',
-      },
-      background: {
-        paper: '#c7949e',
-        default: '#c9babc',
-      },
-    },
-    typography: {
-      body1: {
-        fontFamily: 'Roboto',
-      },
-      fontFamily: 'Bangers',
-      caption: {
-        fontFamily: 'Droid Serif',
-      },
-      overline: {
-        fontFamily: 'Do Hyeon',
-      },
-      body2: {
-        fontFamily: 'Roboto',
-      },
-    },
-  })
+  
   
 
     const getDecks = () => {

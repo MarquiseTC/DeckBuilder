@@ -3,10 +3,11 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { useState } from 'react';
 import { formatSearch, searchByManaCost, searchByManaValue, searchByMultiverseId, typeSearch } from '../Managers/SearchManager';
-import { Button } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 
 import { Multiverse } from './Multiverse';
 import { Container } from 'reactstrap';
+import { MagicCards } from './Cards';
 
 
 
@@ -70,7 +71,7 @@ const whatType = (e) => {
    
     <TextField
           id="outlined-textarea"
-          label="Mana Value"
+          label="CMC"
           placeholder=""
           multiline
           onChange={e => setQuery(e.target.value)}
@@ -109,21 +110,17 @@ const whatType = (e) => {
           placeholder="Placeholder"
           multiline
         /> */}
-     <div className="deck-list">
-      <div className="row justify-content-center">
-        <div className="cards-column">
-            <div id="Filteredstuff"></div>
-        {cards.map((cat) => {
+  </Container>    
+  <Grid container spacing={3} columns={16}>
+    
+  {cards.map((card) => {
               
-              return  <Multiverse key={cat.id} cat={cat} />
-            })}
-        
-        </div>
-      </div>
-    </div>   
-        
-   {/* </div> */}
-    </Container> </>  
+              return  <MagicCards key={card.id} card={card} />
+              
+            })} 
+          </Grid>  </>
+          
+    
    )   
 
 } 

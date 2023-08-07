@@ -17,6 +17,7 @@ namespace DeckBuilder
             builder.Services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             builder.Services.AddTransient<IDeckRepository, DeckRepository>();
             builder.Services.AddTransient<ICardRepository, CardRepository>();
+            builder.Services.AddTransient<IUsedCardsRepository, UsedCardsRepository>();
 
 
 
