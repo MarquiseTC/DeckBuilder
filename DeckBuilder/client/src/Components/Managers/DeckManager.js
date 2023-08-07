@@ -12,3 +12,5 @@ export const searchDecks = (query)=> { //http GET by Search `/api/Deck/search?q=
     return fetch(`${apiUrl}/search?q=${query}&sortDesc=true`)
     .then((res)=> res.json())
   };
+
+  

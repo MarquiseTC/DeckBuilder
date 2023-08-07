@@ -4,12 +4,12 @@ import CardContent from "@mui/material/CardContent";
 import { CardMedia, List, ListItem } from "@mui/material";
 import { Container } from "reactstrap";
 
-export const MagicCards = ({card}) => {
+export const Multiverse = ({cat}) => {
     
     return (
         <Container>
     <Card sx={{ maxWidth: 500}} >
-        <div> <img src={card.image_uris?.normal}/> </div>  
+        <div> <img src={cat.image_uris?.normal}/> </div>  
         
         {/* <CardContent>
             <List>
@@ -24,4 +24,3 @@ export const MagicCards = ({card}) => {
     </Card>
     </Container>
 )}
-

@@ -3,10 +3,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getDeckById } from "../Managers/DeckManager";
 import Deck from "./Deck";
 import React from "react";
+import { Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 
 export const DeckDetails = () => {
     const [deck, setDeck] = useState();
-    const {id} = useParams();
+    const { id } = useParams();
     // const navigate = useNavigate();
     // const localDBUser = localStorage.getItem("userProfile")
     // dbUserObject = JSON.parse(localDBUser)
@@ -28,7 +29,7 @@ return (
         </Typography>
         <Typography variant="body2" color="text.secondary">
         
-          {deck.Name} Lizards are a widespread group of squamate reptiles, with over 6,000
+           Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica
         </Typography>
       </CardContent>

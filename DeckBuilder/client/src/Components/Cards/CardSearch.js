@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { searchCards } from "../Managers/CardManager";
+import { searchCards } from "../Managers/SearchManager";
 
 import { Button, Card, Container } from "reactstrap";
 import  Box  from "@mui/material/Box";
@@ -45,7 +45,7 @@ return (
             <div className="deck-list">
       <div className="row justify-content-center">
         <div className="cards-column">
-            <div id="stuff"></div>
+            <div id="Filteredstuff"></div>
         {cards.map((card) => {
               
               return  <MagicCards key={card.id} card={card} />

@@ -86,7 +86,9 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                     INSERT INTO CARD Name, ManaCost, CMC, Colors, CardLimit";
+                     INSERT INTO CARD (Name, ManaCost, CMC, Colors, CardLimit)
+                     OUTPUT INSERTED.ID
+                    VALUES(@Name, @ManaCost, @CMC, @Colors, @CardLimit)";
 
                     DbUtils.AddParameter (cmd, "@Name", card.Name);
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
@@ -106,7 +108,7 @@ namespace DeckBuilder.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Post WHERE Id = @Id";
+                    cmd.CommandText = "DELETE FROM Card WHERE Id = @Id";
                     DbUtils.AddParameter(cmd, "@id", id);
                     cmd.ExecuteNonQuery();
                 }

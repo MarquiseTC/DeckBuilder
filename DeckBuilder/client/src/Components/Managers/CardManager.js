@@ -1,13 +1,11 @@
-const baseUrl = `https://api.scryfall.com/cards/`
+const baseUrl = `/api/Card`
 
-
-    
-export const searchCards = (query) => {
-   return fetch(`https://api.scryfall.com/cards/search?q=${query}`)
-    .then( r=> r.json())
-   .then(taco => {
-    return taco.data
-   })
-}
-
-
+export const addCard = (singleCard) => {
+    return fetch(baseUrl,{
+        method: "Post",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        body: json.stringify(singleCard),
+    });
+};

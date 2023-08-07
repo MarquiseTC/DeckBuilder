@@ -41,17 +41,17 @@ namespace DeckBuilder.Controllers
             _cardRepository.Add(card);
             return CreatedAtAction("Get", new { id = card.Id }, card);
         }
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, Card card)
-        {
-            if (id != card.Id)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public IActionResult Put(int id, Card card)
+        //{
+        //    if (id != card.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            _cardRepository.Update(card);
-            return NoContent();
-        }
+        //    _cardRepository.Update(card);
+        //    return NoContent();
+        //}
 
         
         [HttpDelete("{id}")]
