@@ -1,4 +1,4 @@
-const apiUrl = 'https://localhost:5001/api/Deck';
+const apiUrl = '/api/Deck';
 
 export const getAllDecks = () => {
     return fetch(apiUrl).then((res) => res.json())
@@ -23,8 +23,8 @@ export const searchDecks = (query)=> { //http GET by Search `/api/Deck/search?q=
     });
 };
 
-export const getDeckById = (id) => {
-    return fetch(`${apiUrl}/${id}`).then((res) => res.json())
+export const getDeckById = (deck_id) => {
+    return fetch(`${apiUrl}/${deck_id}`).then((res) => res.json())
 
     
 }

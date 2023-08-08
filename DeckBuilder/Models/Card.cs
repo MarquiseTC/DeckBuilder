@@ -12,7 +12,7 @@
 
         public string Colors { get; set; }
 
-        public int CardLimit { get; set; }
+        public int? CardLimit { get; set; }
 
         
     }

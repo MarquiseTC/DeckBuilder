@@ -86,15 +86,15 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                     INSERT INTO CARD (Name, ManaCost, CMC, Colors, CardLimit)
+                     INSERT INTO CARD (Name, ManaCost, CMC, Colors)
                      OUTPUT INSERTED.ID
-                    VALUES(@Name, @ManaCost, @CMC, @Colors, @CardLimit)";
+                    VALUES(@Name, @ManaCost, @CMC, @Colors)";
 
                     DbUtils.AddParameter (cmd, "@Name", card.Name);
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
                     DbUtils.AddParameter(cmd, "@CMC", card.CMC);
                     DbUtils.AddParameter(cmd, "@Colors", card.Colors);
-                    DbUtils.AddParameter(cmd, "@CardLimit", card.CardLimit);
+                    //DbUtils.AddParameter(cmd, "@CardLimit", card?.CardLimit);
 
                     card.Id = (int)cmd.ExecuteScalar ();
                 }

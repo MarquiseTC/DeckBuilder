@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { formatSearch, searchByManaCost, searchByManaValue, searchByMultiverseId, typeSearch } from '../Managers/SearchManager';
 import { Button, Grid } from '@mui/material';
 
-import { Multiverse } from './Multiverse';
+
 import { Container } from 'reactstrap';
 import { MagicCards } from './Cards';
 

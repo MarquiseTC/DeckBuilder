@@ -2,8 +2,9 @@ const baseUrl = `/api/Card`
 
 export const addCard = (singleCard) => {
     return fetch(baseUrl,{
-        method: "Post",
+        method: "POST",
         headers:{
+            
             "Content-Type": "application/json",
         },
         body: JSON.stringify(singleCard),
@@ -15,4 +16,5 @@ export const getAllCards = () => {
       .then((res) => res.json())
   };
 
-  
+  export const getCardById = (id) => {
+    return fetch(`${baseUrl}/${id}`).then((res) => res.json())}

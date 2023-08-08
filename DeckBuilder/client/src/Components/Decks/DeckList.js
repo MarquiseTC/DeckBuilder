@@ -39,30 +39,26 @@ return (<>
       }}
       noValidate
       autoComplete="off"
-      
-    onChange={e => setQuery(e.target.value)} 
-    
-     
-    >
-      <TextField id="outlined-basic"  label="Deck Search"  variant="outlined" 
+      onChange={e => setQuery(e.target.value)} >
+    <TextField id="outlined-basic"  label="Deck Search"  variant="outlined" 
         />
         
         <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllDecks} >Search</Button>
        </Box> 
-    <div className="deck-list">
-      <div className="row justify-content-center">
-        <div className="cards-column">
-          
-            {decks.map((deck) => {
+    {decks.map((deck) => {
               
               return  <Deck key={deck.id} deck={deck} />
             })}
-          
-        </div>
-      </div>
-    </div>
-
-  </>
+     </>
   )
 
 }
+    
+      
+    
+          
+            
+          
+        
+
+  

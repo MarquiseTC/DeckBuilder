@@ -25,7 +25,7 @@ namespace DeckBuilder.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult Get(int id) 
+        public IActionResult GetDeckById(int id) 
         {
             var deck = _deckRepository.GetDeckById(id);
             deck.DateCreated = DateTime.Now;  
@@ -54,7 +54,7 @@ namespace DeckBuilder.Controllers
         }
 
         [HttpGet("GetUserDecks/{id}")]
-        public IActionResult GetDeckByUserId(int id)
+        public IActionResult Get(int id)
         {
             List<Deck> decks = _deckRepository.GetDeckByUserId(id);
             if (decks == null)

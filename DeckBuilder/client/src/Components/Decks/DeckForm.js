@@ -50,13 +50,7 @@ return addDeck(deckToSendToApi)
         navigate("/my-decks")
         })};
 
-        const searchAllCards = (e) => {
-            e.preventDefault()
-            searchCards(query).then(card => 
-             {  console.log(card) 
-                setCards(card)}
-                )
-        };
+        
 
 return (
     <>
@@ -104,10 +98,10 @@ return (
                     required
                     sx={{mb: 4}}
                  />
-                 <TextField id="outlined-basic"  label="Search"  variant="outlined" 
-            /> 
+                 
             
-            <Button color="inherit" type="submit" onClick={() => navigate("/decks/:id")}>Create Deck</Button>
+            
+            <Button color="inherit" type="submit" onClick={() => navigate(`/deck/${deck.id}`)}>Create Deck</Button>
             
            
         

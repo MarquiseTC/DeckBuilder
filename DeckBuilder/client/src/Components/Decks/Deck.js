@@ -14,22 +14,26 @@ export const Deck = ({deck}) => {
       <CardContent   >
         
                     <List > 
-                        <Link onClick={() => navigate(`/deck/:id`)}> Name: {deck.name}</Link>
+                        <Link onClick={() => navigate(`/deck/${deck.id}`)}> Name: {deck.name}</Link>
                         <ListItem>Format: {deck.format}</ListItem>
                         <ListItem>Posted By: {deck.userProfile?.name}</ListItem>
-                        {/* <ListItem> {deck.cards.map(card => (
-                            <div key ={card.Id}> <ul>
+                        <ListItem>{deck.cards?.map((card) => (
+                           <div key={card.id}>
                             <ListItem>Card Name: {card.name}</ListItem>
                             <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
                             <ListItem>Colors: {card.colors}</ListItem> 
                             <ListItem>Card Limit: {card.cardLimit}</ListItem>
-                           </ul> </div>
-                        ))}          </ListItem> 
-                         */}
+                        </div>
+                        ))} 
+                          </ListItem>   
+                           
+                            
+                              
+                        
                     </List>
     
                 </CardContent>
-            </Card>
+            </Card> 
   );
 }
