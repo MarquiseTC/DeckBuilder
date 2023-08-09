@@ -3,14 +3,13 @@ import Card  from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { List, ListItem } from "@mui/material";
 import { Container } from "reactstrap";
-import { CardForm } from "./CardForm";
 import { addCard } from "../Managers/CardManager";
 import { useNavigate } from "react-router-dom";
 import { Button } from "reactstrap";
 
 
 
-export const MagicCards = ({card}) => {
+export const MagicCards = ({card, deck}) => {
     
 
 const navigate = useNavigate();
@@ -22,18 +21,18 @@ const navigate = useNavigate();
           Name: card.name,
           ManaCost: card?.mana_cost,
           CMC: card?.cmc,
-          Colors: card?.colors[0],
-          CardLimit: card.frame
+          Colors: card?.colors[0]
+          
         }
     
-        return addCard(sendCardToApi).then(navigate(`/decks`))
+        return addCard(sendCardToApi).then(navigate(`/deck/${deck.id}`))
       }
     
     
     return (
         <Container>
     <Card sx={{ maxWidth: 500}} >
-       {CardForm} <div> <img src={card.image_uris?.normal}/> </div>  
+        <div> <img src={card.image_uris?.normal}/> </div>  
         
         <CardContent>
             <List>
@@ -44,7 +43,7 @@ const navigate = useNavigate();
             <ListItem>Colors: {card?.colors}</ListItem>
             
             </List>
-            <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Add Card</Button>
+            {/* <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Add Card</Button> */}
         </CardContent>
         
     </Card>

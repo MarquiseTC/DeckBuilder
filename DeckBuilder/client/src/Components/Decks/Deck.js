@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export const Deck = ({deck}) => {
   const navigate = useNavigate();
   return (
-    <Card sx={{ maxWidth: 345 }} >
+    <Card sx={{ maxWidth: 10000}} >
       
       <CardContent   >
         
@@ -23,11 +23,11 @@ export const Deck = ({deck}) => {
                             <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
                             <ListItem>Colors: {card.colors}</ListItem> 
-                            <ListItem>Card Limit: {card.cardLimit}</ListItem>
+                            
                         </div>
                         ))} 
                           </ListItem>   
-                           
+                            
                             
                               
                         

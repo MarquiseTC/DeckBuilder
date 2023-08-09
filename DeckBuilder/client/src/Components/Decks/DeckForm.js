@@ -8,28 +8,30 @@ import { Button } from "reactstrap";
 import { MagicCards } from "../Cards/Cards";
 import { searchCards } from "../Managers/SearchManager";
 
-export const DeckForm = () => {
+export const DeckForm = ({decks}) => {
     const localDBUser = localStorage.getItem("userProfile");
     const dbUserObject = JSON.parse(localDBUser)
     const navigate = useNavigate();
-    const [cards, setCards] = useState([])
-    const [query, setQuery] = useState("")
+//     const [cards, setCards] = useState([])
+    
 
-const getCards = () => {
-    getAllCards().then(allCards => setCards(allCards));
-}
+// const getCards = () => {
+//     getAllCards().then(allCards => setCards(allCards));
+// }
 
-useEffect(() =>{
-    getCards()
-}, [])
+// useEffect(() =>{
+//     getCards()
+// }, [])
 
 
 const [deck, update] = useState({
+    userProfileId:dbUserObject.id,
     name: "",
     format:"",
-    createDateTime: Date.now(),
-    // cardId:0,
-    userProfileId: dbUserObject.id
+    cards:[],
+
+    // dateCreated: Date.now()
+    
 
 })
 const handleSaveButtonClick = (event) => {
@@ -39,24 +41,28 @@ const handleSaveButtonClick = (event) => {
 
 
 const deckToSendToApi ={
+    UserProfileId:dbUserObject.id,
     Name: deck.name,
     Format: deck.format,
-    // CardId: deck.cardId,
-    UserProfile: dbUserObject.id
+    Cards: deck?.cards
+    // DateCreated: Date.now()
+    
     
 }
 return addDeck(deckToSendToApi)
         .then(() => {
-        navigate("/my-decks")
-        })};
+        navigate(`/deck/${decks.id}`)
+        })
+    
+    };
 
         
 
 return (
     <>
     
-        <Container>
-        <form autoComplete="off" onSubmit={handleSaveButtonClick}  >
+        <Container >
+        <form autoComplete="off"   >
             <h2>Deck Form</h2>
             <Stack spacing={2} direction="column" sx={{marginBottom: 1}} >
             <Box>
@@ -101,10 +107,10 @@ return (
                  
             
             
-            <Button color="inherit" type="submit" onClick={() => navigate(`/deck/${deck.id}`)}>Create Deck</Button>
+            <Button color="inherit" type="submit" onClick={handleSaveButtonClick}> Create Deck </Button>
             
            
-        
+        {/* onClick={() => navigate(`/deck/${deck.id}`)} */}
           
         
                  {/* <TextField

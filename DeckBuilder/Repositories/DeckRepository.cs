@@ -25,7 +25,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, c.CardLimit,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -41,39 +41,42 @@ namespace DeckBuilder.Repositories
                     var reader = cmd.ExecuteReader();
 
                     Deck deck = null;
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        deck = new Deck()
+                        if (deck == null)
                         {
-                            Id = DbUtils.GetInt(reader, "DeckId"),
-                            Name = DbUtils.GetString(reader, "Name"),
-                            Format = DbUtils.GetString(reader, "Format"),
-                            DateCreated = DbUtils.GetDateTime(reader, "DeckDateCreated"),
-                            UserProfileId = DbUtils.GetInt(reader, "DeckUserProfileId"),
-                            UserProfile = new UserProfile()
+                            deck = new Deck()
                             {
-                                Id = DbUtils.GetInt(reader, "DeckUserProfileId"),
-                                Name = DbUtils.GetString(reader, "UserProfileName"),
-                                Email = DbUtils.GetString(reader, "Email"),
+                                Id = DbUtils.GetInt(reader, "DeckId"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                Format = DbUtils.GetString(reader, "Format"),
                                 DateCreated = DbUtils.GetDateTime(reader, "DeckDateCreated"),
+                                UserProfileId = DbUtils.GetInt(reader, "DeckUserProfileId"),
+                                UserProfile = new UserProfile()
+                                {
+                                    Id = DbUtils.GetInt(reader, "DeckUserProfileId"),
+                                    Name = DbUtils.GetString(reader, "UserProfileName"),
+                                    Email = DbUtils.GetString(reader, "Email"),
+                                    DateCreated = DbUtils.GetDateTime(reader, "DeckDateCreated"),
 
-                            },
-                            Cards = new List<Card>()
-                        };
-                    }
-                    if (DbUtils.IsNotDbNull(reader, "CardId"))
-                    {
-                        deck.Cards.Add(new Card()
+                                },
+                                Cards = new List<Card>()
+                            };
+                        }
+
+                        if (DbUtils.IsNotDbNull(reader, "CardId"))
                         {
-                            Id = DbUtils.GetInt(reader, "CardId"),
-                            Name = DbUtils.GetString(reader, "CardName"),
-                            CMC = DbUtils.GetInt(reader, "CMC"),
-                            ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                            Colors = DbUtils.GetString(reader, "Colors"),
-                            CardLimit = DbUtils.GetInt(reader, "CardLimit"),
-                        });
-                    }
+                            deck.Cards.Add(new Card()
+                            {
+                                Id = DbUtils.GetInt(reader, "CardId"),
+                                Name = DbUtils.GetString(reader, "CardName"),
+                                CMC = DbUtils.GetInt(reader, "CMC"),
+                                ManaCost = DbUtils.GetString(reader, "ManaCost"),
+                                Colors = DbUtils.GetString(reader, "Colors")
 
+                            });
+                        }
+                    }
 
                     reader.Close();
                     return deck;
@@ -90,13 +93,13 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                    INSERT INTO Deck (Name, Format, DateCreated, UserProfileId)
+                    INSERT INTO Deck ( UserProfileId, Name, Format, DateCreated)
                     OUTPUT INSERTED.ID 
-                    VALUES (@name, @format, @dateCreated, @userProfileId)";
+                    VALUES (@userProfileId, @name, @format, @dateCreated)";
                     DbUtils.AddParameter(cmd, "@userProfileId", deck.UserProfileId);
                     DbUtils.AddParameter(cmd, "@name", deck.Name);
                     DbUtils.AddParameter(cmd, "@format", deck.Format);
-                    DbUtils.AddParameter(cmd, "@dateCreated", deck.DateCreated);
+                    DbUtils.AddParameter(cmd, "@dateCreated", DateTime.Now);
 
                     deck.Id = (int)cmd.ExecuteScalar();
                 }
@@ -125,7 +128,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, c.CardLimit,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -146,7 +149,7 @@ namespace DeckBuilder.Repositories
 
                         var userProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
                         var existingDeck = decks.FirstOrDefault(d => d.Id == userProfileId);
-                        if (existingDeck == null)
+                        if (existingDeck == null )
                         {
                             existingDeck = new Deck()
                             {
@@ -167,29 +170,32 @@ namespace DeckBuilder.Repositories
                             };
                             decks.Add(existingDeck);
                         }
-                        var cardId = DbUtils.GetInt(reader, "CardId");
-                        var existingCard = existingDeck.Cards.FirstOrDefault(c => c.Id == cardId);
 
-                        if (existingCard == null)
+                        if (DbUtils.IsNotDbNull(reader, "CardId")) 
+                        { 
+
+                           existingDeck.Cards.Add(new Card()
+
+                        
                         {
-
-                            existingCard = new Card()
-                            {
                                 Id = DbUtils.GetInt(reader, "CardId"),
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors"),
-                                CardLimit = DbUtils.GetInt(reader, "CardLimit")
-                            };
-                            existingDeck.Cards.Add(existingCard);
+                                Colors = DbUtils.GetString(reader, "Colors")
+                           
+                            
+                                
+                                
+                            });
+                            
                         }
-
-                    }
-                    reader.Close();
-                    return decks;
+                       
                 }
-
+                   reader.Close();
+                         return decks;  
+                    
+}
 
             }
         }
@@ -202,7 +208,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, c.CardLimit,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -245,22 +251,28 @@ namespace DeckBuilder.Repositories
                             };
                             decks.Add(existingDeck);
                         }
-                        var cardId = DbUtils.GetInt(reader, "CardId");
-                        var existingCard = existingDeck.Cards.FirstOrDefault(c => c.Id == cardId);
-
-                        if (existingCard == null)
+                        var cardId = 0;
+                        if (DbUtils.IsNotDbNull(reader, "CardId"))
                         {
+                            cardId = DbUtils.GetInt(reader, "CardId");
 
-                            existingCard = new Card()
+
+                            var existingCard = existingDeck.Cards.FirstOrDefault(c => c.Id == cardId && cardId != 0);
+
+                            if (existingCard == null)
                             {
-                                Id = DbUtils.GetInt(reader, "CardId"),
-                                Name = DbUtils.GetString(reader, "CardName"),
-                                CMC = DbUtils.GetInt(reader, "CMC"),
-                                ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors"),
-                                CardLimit = DbUtils.GetInt(reader, "CardLimit")
-                            };
-                            existingDeck.Cards.Add(existingCard);
+
+                                existingCard = new Card()
+                                {
+                                    Id = DbUtils.GetInt(reader, "CardId"),
+                                    Name = DbUtils.GetString(reader, "CardName"),
+                                    CMC = DbUtils.GetInt(reader, "CMC"),
+                                    ManaCost = DbUtils.GetString(reader, "ManaCost"),
+                                    Colors = DbUtils.GetString(reader, "Colors")
+
+                                };
+                                existingDeck.Cards.Add(existingCard);
+                            }
                         }
 
                     }
@@ -278,7 +290,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     var sql = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, c.CardLimit,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -341,8 +353,8 @@ namespace DeckBuilder.Repositories
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors"),
-                                CardLimit = DbUtils.GetInt(reader, "CardLimit")
+                                Colors = DbUtils.GetString(reader, "Colors")
+                                
                             };
                             existingDeck.Cards.Add(existingCard);
                         }
@@ -353,6 +365,32 @@ namespace DeckBuilder.Repositories
                 }
             }
         }
+
+        
+   public void Update(Deck deck)
+
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                    Update Deck 
+                    SET UserProfileId =@UserProfileId, Name= @Name, Format = @Format, DateCreated =@DateCreated
+                        Where Id = @Id";
+                    DbUtils.AddParameter(cmd, "@UserProfileId", deck.UserProfileId);
+                    DbUtils.AddParameter(cmd, "@Name", deck.Name);
+                    DbUtils.AddParameter(cmd, "@Format", deck.Format);
+                    DbUtils.AddParameter(cmd, "@DateCreated", deck.DateCreated);
+                    DbUtils.AddParameter(cmd, "@Id", deck.Id);
+
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+        }
+
     }
 }
         

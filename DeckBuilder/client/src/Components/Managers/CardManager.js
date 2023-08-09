@@ -8,7 +8,8 @@ export const addCard = (singleCard) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(singleCard),
-    });
+    })
+    .then(r => r.json())
 };
 
 export const getAllCards = () => {
@@ -17,4 +18,15 @@ export const getAllCards = () => {
   };
 
   export const getCardById = (id) => {
-    return fetch(`${baseUrl}/${id}`).then((res) => res.json())}
+    return fetch(`${baseUrl}/${id}`).then((res) => res.json())};
+
+    export const saveCardToDeck = (newObject) => {
+        return fetch("https://localhost:5001/api/UsedCards",{
+            method: "POST",
+            headers:{
+                
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newObject),
+        })
+    };

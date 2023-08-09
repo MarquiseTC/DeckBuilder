@@ -28,8 +28,7 @@ namespace DeckBuilder.Controllers
         public IActionResult GetDeckById(int id) 
         {
             var deck = _deckRepository.GetDeckById(id);
-            deck.DateCreated = DateTime.Now;  
-
+           
 
             if (deck == null) 
             { 
@@ -42,7 +41,8 @@ namespace DeckBuilder.Controllers
         [HttpPost]
         public IActionResult Post(Deck deck) 
         { 
-        _deckRepository.Add(deck);
+            _deckRepository.Add(deck);
+            deck.DateCreated = DateTime.Now;
             return CreatedAtAction("Get", new {id = deck.Id}, deck);
         }
 
@@ -72,6 +72,18 @@ namespace DeckBuilder.Controllers
             return Ok(_deckRepository.Search(q, sortDesc));
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Deck deck)
+        {
+            if (id != deck.Id)
+            {
+                return BadRequest();
+            }
+
+            deck.DateCreated = DateTime.Now;
+            _deckRepository.Update(deck);
+            return NoContent();
+        }
 
     }
 

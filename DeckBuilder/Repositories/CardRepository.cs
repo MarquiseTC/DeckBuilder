@@ -17,7 +17,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd  = conn.CreateCommand()) 
                 {
                     cmd.CommandText = @"
-                   SELECT Id, Name, ManaCost, CMC, Colors, CardLimit
+                   SELECT Id, Name, ManaCost, CMC, Colors
                     From Card";
 
                     var reader = cmd.ExecuteReader();
@@ -31,7 +31,7 @@ namespace DeckBuilder.Repositories
                             ManaCost = DbUtils.GetString(reader, "ManaCost"),
                             CMC = DbUtils.GetInt(reader, "CMC"),
                             Colors = DbUtils.GetString(reader, "Colors"),
-                            CardLimit = DbUtils.GetInt(reader, "CardLimit"),
+                            
                         });
                     
                     }
@@ -49,7 +49,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand()) 
                 {
                     cmd.CommandText = @"
-                   SELECT Id, Name, ManaCost, CMC, Colors, CardLimit
+                   SELECT Id, Name, ManaCost, CMC, Colors
                     From Card
                     Where Id = @Id";
 
@@ -65,8 +65,8 @@ namespace DeckBuilder.Repositories
                             Name = DbUtils.GetString(reader, "Name"),
                             ManaCost = DbUtils.GetString(reader, "ManaCost"),
                             CMC = DbUtils.GetInt(reader, "CMC"),
-                            Colors = DbUtils.GetString(reader, "Colors"),
-                            CardLimit = DbUtils.GetInt(reader, "CardLimit")
+                            Colors = DbUtils.GetString(reader, "Colors")
+                            
                         };
 
                     }
@@ -94,7 +94,7 @@ namespace DeckBuilder.Repositories
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
                     DbUtils.AddParameter(cmd, "@CMC", card.CMC);
                     DbUtils.AddParameter(cmd, "@Colors", card.Colors);
-                    //DbUtils.AddParameter(cmd, "@CardLimit", card?.CardLimit);
+                    
 
                     card.Id = (int)cmd.ExecuteScalar ();
                 }
@@ -126,14 +126,14 @@ namespace DeckBuilder.Repositories
                     SET Name = @Name,
                         ManaCost = @ManaCost,
                         CMC = @CMC,
-                        Colors = @Colors,
-                        CardLimit = @CardLimit
+                        Colors = @Colors
+                        
                         Where Id = @Id";
                     DbUtils.AddParameter(cmd, "@Name", card.Name);
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
                     DbUtils.AddParameter(cmd, "@CMC", card.CMC);
                     DbUtils.AddParameter(cmd, "@Colors", card.Colors);
-                    DbUtils.AddParameter(cmd, "@CardLimit", card.CardLimit);
+                    
 
                     cmd.ExecuteNonQuery();
                 }

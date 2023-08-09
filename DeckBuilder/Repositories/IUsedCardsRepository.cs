@@ -4,8 +4,10 @@ namespace DeckBuilder.Repositories
 {
     public interface IUsedCardsRepository
     {
-        //public UsedCards GetByDeckId(int deckId);
+        public UsedCards GetByDeckId(int id);
 
-        //public UsedCards GetByCardId(int deckId);
+        public UsedCards GetByCardId(int id);
+
+        public void Add(UsedCards usedCards);
     }
 }
