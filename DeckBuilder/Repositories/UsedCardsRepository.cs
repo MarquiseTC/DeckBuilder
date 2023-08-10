@@ -103,7 +103,33 @@ namespace DeckBuilder.Repositories
             }
         }
 
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM UsedCards WHERE DeckId = @DeckId";
+                    DbUtils.AddParameter(cmd, "@DeckId", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
+        public void DeleteCard(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM UsedCards WHERE CardId = @CardId";
+                    DbUtils.AddParameter(cmd, "@CardId", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
 
     }
 

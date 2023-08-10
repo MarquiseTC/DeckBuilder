@@ -20,11 +20,11 @@ export const searchDecks = (query)=> { //http GET by Search `/api/Deck/search?q=
             "Content-Type": "application/json",
         },
         body: JSON.stringify(singleDeck),
-    });
+    }).then(r => r.json())
 };
 
-export const getDeckById = (deck_id) => {
-    return fetch(`${apiUrl}/${deck_id}`).then((res) => res.json())
+export const getDeckById = (id) => {
+    return fetch(`${apiUrl}/${id}`).then((res) => res.json())
 };
 
 export const deleteDeck = (id) => {

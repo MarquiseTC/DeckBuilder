@@ -13,10 +13,12 @@ namespace DeckBuilder.Controllers
     public class CardController : ControllerBase
     {
         private readonly ICardRepository _cardRepository;
+        private readonly IUsedCardsRepository _usedCardsRepository;
 
-        public CardController(ICardRepository cardRepository)
+        public CardController(ICardRepository cardRepository, IUsedCardsRepository usedCardsRepository)
         {
             _cardRepository = cardRepository;
+            _usedCardsRepository = usedCardsRepository;
         }
 
         [HttpGet]
@@ -57,6 +59,7 @@ namespace DeckBuilder.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            _usedCardsRepository.Delete(id);
             _cardRepository.Delete(id);
             return NoContent();
         }

@@ -9,5 +9,9 @@ namespace DeckBuilder.Repositories
         public UsedCards GetByCardId(int id);
 
         public void Add(UsedCards usedCards);
+
+        void Delete(int id);
+
+        void DeleteCard(int id);
     }
 }

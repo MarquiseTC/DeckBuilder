@@ -6,11 +6,12 @@
 
         public string Name { get; set; }
 
-        public string ManaCost { get; set; }
+        public string? ManaCost { get; set; }
 
-        public int CMC { get; set; }
+        public int? CMC { get; set; }
 
-        public string Colors { get; set; }
+        public string? Colors { get; set; }
+
 
         
 

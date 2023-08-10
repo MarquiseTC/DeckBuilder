@@ -38,7 +38,7 @@ export const CardSearch = () => {
 
         onChange={e => setQuery(e.target.value)}
 
-
+          fixed
       >
         <TextField id="outlined-basic" label="Search" variant="outlined"
         />

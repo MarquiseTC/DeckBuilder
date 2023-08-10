@@ -149,7 +149,7 @@ namespace DeckBuilder.Repositories
 
                         var userProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
                         var existingDeck = decks.FirstOrDefault(d => d.Id == userProfileId);
-                        if (existingDeck == null )
+                        if (existingDeck == null)
                         {
                             existingDeck = new Deck()
                             {
@@ -171,27 +171,28 @@ namespace DeckBuilder.Repositories
                             decks.Add(existingDeck);
                         }
 
-                        if (DbUtils.IsNotDbNull(reader, "CardId")) 
-                        { 
-
-                           existingDeck.Cards.Add(new Card()
-
-                        
+                        if (DbUtils.IsNotDbNull(reader, "CardId"))
                         {
+
+                            existingDeck.Cards.Add(new Card()
+
+
+                            {
                                 Id = DbUtils.GetInt(reader, "CardId"),
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
                                 Colors = DbUtils.GetString(reader, "Colors")
-                           
-                            
-                                
-                                
+
+
+
+
                             });
-                            
+
                         }
-                       
-                }
+
+                    }
+                
                    reader.Close();
                          return decks;  
                     

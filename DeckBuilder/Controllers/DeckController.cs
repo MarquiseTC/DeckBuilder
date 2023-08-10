@@ -12,9 +12,11 @@ namespace DeckBuilder.Controllers
     public class DeckController : ControllerBase
     {
         private readonly IDeckRepository _deckRepository;
-        public DeckController(IDeckRepository deckRepository)
+        private readonly IUsedCardsRepository _usedCardsRepository;
+        public DeckController(IDeckRepository deckRepository, IUsedCardsRepository usedCardsRepository)
         {
             _deckRepository = deckRepository;
+            _usedCardsRepository = usedCardsRepository;
         }
         
         [HttpGet]
@@ -41,14 +43,15 @@ namespace DeckBuilder.Controllers
         [HttpPost]
         public IActionResult Post(Deck deck) 
         { 
-            _deckRepository.Add(deck);
             deck.DateCreated = DateTime.Now;
+            _deckRepository.Add(deck);
             return CreatedAtAction("Get", new {id = deck.Id}, deck);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id) 
         {
+            _usedCardsRepository.Delete(id);
         _deckRepository.Delete(id);
             return NoContent();
         }

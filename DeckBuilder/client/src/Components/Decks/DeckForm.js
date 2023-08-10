@@ -8,7 +8,7 @@ import { Button } from "reactstrap";
 import { MagicCards } from "../Cards/Cards";
 import { searchCards } from "../Managers/SearchManager";
 
-export const DeckForm = ({decks}) => {
+export const DeckForm = () => {
     const localDBUser = localStorage.getItem("userProfile");
     const dbUserObject = JSON.parse(localDBUser)
     const navigate = useNavigate();
@@ -29,6 +29,7 @@ const [deck, update] = useState({
     name: "",
     format:"",
     cards:[],
+    
 
     // dateCreated: Date.now()
     
@@ -45,13 +46,14 @@ const deckToSendToApi ={
     Name: deck.name,
     Format: deck.format,
     Cards: deck?.cards
+    
     // DateCreated: Date.now()
     
     
 }
 return addDeck(deckToSendToApi)
-        .then(() => {
-        navigate(`/deck/${decks.id}`)
+        .then( returnedDeck=> {
+        navigate(`/deck/${returnedDeck.id}`)
         })
     
     };

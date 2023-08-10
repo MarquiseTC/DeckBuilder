@@ -24,18 +24,14 @@ export const UserDecks = () => {
 
     return (<>
     
-        <div className="deck-list">
-          <div className="row justify-content-center">
-            <div className="cards-column">
+        
               
                 {userDecks.map((deck) => {
                 
                   return  <Deck  deck={deck} />
                 })}
               
-            </div>
-          </div>
-        </div>
+            
       
       </>)
 

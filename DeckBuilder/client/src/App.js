@@ -8,18 +8,6 @@ import { AppBar, ThemeProvider, createTheme } from '@mui/material';
 import { ApplicationViews } from './Components/Views/ApplicationViews';
 import { ButtonAppBar, Header } from './Components/Views/AppBar';
 import { Authorize } from './Components/Views/Authorize';
-const theme = createTheme ({
-    palette: {
-        mode: 'dark',
-    primary: {
-      main: '#bd0707',
-    },
-          background: {
-                paper: '#c7949e',
-                default: '#c9babc',
-              }
-    }
-})
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);

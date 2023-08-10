@@ -30,3 +30,11 @@ export const getAllCards = () => {
             body: JSON.stringify(newObject),
         })
     };
+
+    export const deleteCard = (id) => {
+        return fetch(`${baseUrl}/${id}`, {
+            method: "DELETE",
+        })
+        .then(() => getAllCards())
+    };
+        

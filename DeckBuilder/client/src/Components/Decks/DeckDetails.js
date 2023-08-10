@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-
+import DeleteIcon from '@mui/icons-material/Delete'
 
 import React from "react";
-import { Button, Card, CardActions, CardContent, Grid, ListItem, TextField, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, Container, Grid, IconButton, ListItem, TextField, Typography } from "@mui/material";
 import { deleteDeck, getDeckById, getUserDeckById } from "../Managers/DeckManager";
 import { searchCards } from "../Managers/SearchManager";
 
 import { DeckMagicCards } from "./DeckMagicCards";
+import { deleteCard, getCardById } from "../Managers/CardManager";
 
 export const DeckDetails = () => {
     const [deck, setDeck] = useState();
@@ -17,6 +18,7 @@ export const DeckDetails = () => {
     const navigate = useNavigate()
     const localDBUser = localStorage.getItem("userProfile");
     const dbUserObject = JSON.parse(localDBUser)
+    
     
 
 useEffect(() => {
@@ -28,6 +30,10 @@ useEffect(() => {
 if (!deck) {
     return null;
 }
+
+
+
+
 
 const searchAllCards = (e) => {
   e.preventDefault()
@@ -55,14 +61,41 @@ const alertClick = () => {
 
   const deleteButton = () => {
     if (deck.userProfileId === dbUserObject.id) {
-        return <button onClick={ alertClick } className="post-finish">Delete</button>}
+        return <IconButton onClick={ alertClick } className="post-finish"><DeleteIcon /></IconButton>}
 
         else {
           return ""
         }}
 
+        const alertClick2 = () => {
+          const confirmBox = window.confirm("Do you really want to delete this card?")
+          if (confirmBox === true){
+            handleDelete2()
+          }
+            // else (window.confirm("Post not deleted!"))
+          }
+        
+        
+          const handleDelete2 = () => {
+            (deck.cards.id).then(() => {
+              navigate(`/my-decks`)
+            });
+          };
+        
+        
+          const deleteButton2 = () => {
+            if (deck.userProfileId === dbUserObject.id) {
+                return <IconButton onClick={ alertClick2 } className="post-finish"><DeleteIcon /></IconButton>}
+        
+                else {
+                  return ""
+                }}
+
+
+
+
 return ( <>
-    <Card sx={{ maxWidth: 10000 }} key={deck.id}  onChange={e => setQuery(e.target.value)}>
+    <Container  fixed  onChange={e => setQuery(e.target.value)}>
       
       
       
@@ -74,25 +107,28 @@ return ( <>
         
           
        <Typography gutterBottom variant="h5" component="div">
+        
         <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllCards} >Search</Button>
         <Button variant="outlined" color="secondary" type="submit">Save Deck</Button> 
         {deleteButton()}
+        
         <TextField id="outlined-basic"  label="Search"  variant="outlined" 
-            /> 
-            <ListItem>User Name: {deck.userProfile.name}</ListItem>
+            /> <Card>
+            <ListItem>User Name: {deck.userProfile?.name}</ListItem>
             <ListItem>Deck Name: {deck.name}</ListItem>
             <ListItem>Format: {deck.format}</ListItem>
-            <ListItem>{deck.cards?.map((card) => (
+            <ListItem>
+              {deck.cards?.map((card) => (
                            <div key={card.id}>
                             <div> <img src={card.image_uris?.small}/> </div>  
                             <ListItem>Card Name: {card.name}</ListItem>
                             <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
                             <ListItem>Colors: {card.colors}</ListItem> 
-                            
+                            {deleteButton2()}
                         </div>
                         ))} </ListItem>  
-      
+      </Card>
       </Typography>
 
       
@@ -100,7 +136,7 @@ return ( <>
       
       {/* </CardActions> */}
    
-    </Card>  
+    </Container>  
     <Grid container spacing={2.5}>
   {cards?.map((card) => {
               
