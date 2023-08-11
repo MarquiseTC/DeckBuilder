@@ -79,7 +79,7 @@ export const ButtonAppBar = ({ isLoggedIn, setIsLoggedIn }) => {
               <Button color="inherit" type="submit" onClick={() => navigate("/search")}>Search</Button>
               
               <Button color="inherit" type="submit" onClick={() => { logout(); setIsLoggedIn(false) }}>Logout</Button>
-               <Avatar{...stringAvatar(dbUserObject.name) }/>   
+               {/* <Avatar{...stringAvatar(dbUserObject.name) }/>    */}
 
             </Typography>} </Toolbar>
 
