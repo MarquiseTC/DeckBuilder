@@ -46,12 +46,12 @@ namespace DeckBuilder.Controllers
             return NoContent();
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult DeleteCard(int id)
         {
-            _usedCardsRepository.Delete(id);
+            _usedCardsRepository.DeleteCard(id);
             return NoContent();
         }
 
-        
+       
     }
 }

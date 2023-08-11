@@ -31,10 +31,9 @@ export const getAllCards = () => {
         })
     };
 
-    export const deleteCard = (id) => {
-        return fetch(`${baseUrl}/${id}`, {
+    export const deleteCardFromDeck =(id) => {
+        return fetch(`https://localhost:5001/api/UsedCards/${id}`, {
             method: "DELETE",
         })
-        .then(() => getAllCards())
-    };
+    }
         

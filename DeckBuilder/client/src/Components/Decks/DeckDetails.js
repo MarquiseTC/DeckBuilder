@@ -8,7 +8,7 @@ import { deleteDeck, getDeckById, getUserDeckById } from "../Managers/DeckManage
 import { searchCards } from "../Managers/SearchManager";
 
 import { DeckMagicCards } from "./DeckMagicCards";
-import { deleteCard, getCardById } from "../Managers/CardManager";
+import { deleteCard, deleteCardFromDeck, getCardById } from "../Managers/CardManager";
 
 export const DeckDetails = () => {
     const [deck, setDeck] = useState();
@@ -67,17 +67,17 @@ const alertClick = () => {
           return ""
         }}
 
-        const alertClick2 = () => {
+        const alertClick2 = (cardId) => {
           const confirmBox = window.confirm("Do you really want to delete this card?")
           if (confirmBox === true){
-            handleDelete2()
+            handleDelete2(cardId)
           }
             // else (window.confirm("Post not deleted!"))
           }
         
         
-          const handleDelete2 = () => {
-            (deck.cards.id).then(() => {
+          const handleDelete2 = (cardId) => {
+            deleteCardFromDeck(cardId).then(() => {
               navigate(`/my-decks`)
             });
           };
@@ -90,6 +90,7 @@ const alertClick = () => {
                 else {
                   return ""
                 }}
+             
 
 
 
@@ -125,7 +126,12 @@ return ( <>
                             <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
                             <ListItem>Colors: {card.colors}</ListItem> 
-                            {deleteButton2()}
+                            { (deck.userProfileId === dbUserObject.id) ?
+                  <IconButton onClick={ () => alertClick2(card.id) } className="post-finish"><DeleteIcon /></IconButton>
+          
+                  :
+                    ""
+                  }
                         </div>
                         ))} </ListItem>  
       </Card>

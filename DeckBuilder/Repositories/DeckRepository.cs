@@ -25,7 +25,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, 
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -230,7 +230,7 @@ namespace DeckBuilder.Repositories
                     {
 
                         var deckUserProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
-                        var existingDeck = decks.FirstOrDefault(d => d.Id == userProfileId);
+                        var existingDeck = decks.FirstOrDefault(d => d.Id == DbUtils.GetInt(reader, "DeckId"));
                         if (existingDeck == null)
                         {
                             existingDeck = new Deck()
