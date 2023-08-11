@@ -20,9 +20,9 @@ export const Deck = ({deck}) => {
                         <ListItem>{deck.cards?.map((card) => (
                            <div key={card.id}>
                             <ListItem>Card Name: {card.name}</ListItem>
-                            <ListItem>ManaCost: {card.manaCost}</ListItem>
+                            {/* <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
-                            <ListItem>Colors: {card.colors}</ListItem> 
+                            <ListItem>Colors: {card.colors}</ListItem>  */}
                             
                         </div>
                         ))} 

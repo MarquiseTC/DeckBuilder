@@ -34,4 +34,13 @@ export const deleteDeck = (id) => {
     .then(() => getAllDecks())
 };
     
-
+export const editDeck = (deck) => {
+    console.log(deck)
+    return fetch(`${apiUrl}/${deck.Id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(deck)
+    }).then(() => getAllDecks())
+  }

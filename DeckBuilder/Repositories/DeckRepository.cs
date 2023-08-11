@@ -25,7 +25,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost, c.Image,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -72,7 +72,8 @@ namespace DeckBuilder.Repositories
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors")
+                                Colors = DbUtils.GetString(reader, "Colors"),
+                                Image = DbUtils.GetString(reader, "Image"),
 
                             });
                         }
@@ -128,7 +129,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,c.Image,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -182,7 +183,8 @@ namespace DeckBuilder.Repositories
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors")
+                                Colors = DbUtils.GetString(reader, "Colors"),
+                                Image = DbUtils.GetString(reader, "Image"),
 
 
 
@@ -209,7 +211,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,c.Image,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -230,7 +232,7 @@ namespace DeckBuilder.Repositories
                     {
 
                         var deckUserProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
-                        var existingDeck = decks.FirstOrDefault(d => d.Id == userProfileId);
+                        var existingDeck = decks.FirstOrDefault(d => d.Id == DbUtils.GetInt(reader, "DeckId"));
                         if (existingDeck == null)
                         {
                             existingDeck = new Deck()
@@ -269,7 +271,8 @@ namespace DeckBuilder.Repositories
                                     Name = DbUtils.GetString(reader, "CardName"),
                                     CMC = DbUtils.GetInt(reader, "CMC"),
                                     ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                    Colors = DbUtils.GetString(reader, "Colors")
+                                    Colors = DbUtils.GetString(reader, "Colors"),
+                                    Image = DbUtils.GetString(reader, "Image"),
 
                                 };
                                 existingDeck.Cards.Add(existingCard);
@@ -291,7 +294,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     var sql = @"Select d.Id as DeckId, d.Name, d.UserProfileId as DeckUserProfileId, 
-                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,
+                d.Format,c.Id as CardId, c.Name as CardName, c.cmc, c.Colors,c.ManaCost,c.Image,
                 u.Name as UserProfileName,u.email,
                 d.DateCreated as DeckDateCreated
 
@@ -354,8 +357,9 @@ namespace DeckBuilder.Repositories
                                 Name = DbUtils.GetString(reader, "CardName"),
                                 CMC = DbUtils.GetInt(reader, "CMC"),
                                 ManaCost = DbUtils.GetString(reader, "ManaCost"),
-                                Colors = DbUtils.GetString(reader, "Colors")
-                                
+                                Colors = DbUtils.GetString(reader, "Colors"),
+                                Image = DbUtils.GetString(reader, "Image"),
+
                             };
                             existingDeck.Cards.Add(existingCard);
                         }

@@ -12,7 +12,7 @@
 
         public string? Colors { get; set; }
 
-
+        public string? Image { get; set; }
         
 
         
