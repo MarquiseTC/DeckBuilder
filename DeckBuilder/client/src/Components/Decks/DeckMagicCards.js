@@ -1,7 +1,7 @@
 import React from "react";
 import Card  from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { IconButton, List, ListItem } from "@mui/material";
+import { Alert, IconButton, List, ListItem } from "@mui/material";
 import { Container } from "reactstrap";
 import { addCard, deleteCard, saveCardToDeck } from "../Managers/CardManager";
 import { useNavigate } from "react-router-dom";
@@ -9,10 +9,15 @@ import { Button } from "reactstrap";
 import DeleteIcon from '@mui/icons-material/Delete'
 
 export const DeckMagicCards = ({card, deckId}) => {
+    const localDBUser = localStorage.getItem("userProfile");
+    const dbUserObject = JSON.parse(localDBUser)
     
     
+
+
     
         const handleSaveButtonClick = (event) => {
+            alert("card added")
             event.preventDefault()
         
             const sendCardToApi = {
@@ -52,14 +57,15 @@ export const DeckMagicCards = ({card, deckId}) => {
             <CardContent>
                 <List>
                 <ListItem><div> <img src={card.image_uris?.normal}/> </div> </ListItem> 
-                <ListItem>Card Name: {card.name}</ListItem>
+                {/* <ListItem>Card Name: {card.name}</ListItem>
                 <ListItem>ManaCost: {card?.mana_cost}</ListItem>
                 <ListItem>CMC: {card?.cmc}</ListItem>
-                <ListItem>Colors: {card?.colors}</ListItem>
+                <ListItem>Colors: {card?.colors}</ListItem> */}
                 
                 </List>
-                <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)} >Add to deck</Button>
                 
+                <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}  >Add to deck</Button>
+             
             </CardContent>
             
         </Card>

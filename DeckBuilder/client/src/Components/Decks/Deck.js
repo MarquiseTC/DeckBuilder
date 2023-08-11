@@ -19,7 +19,7 @@ export const Deck = ({deck}) => {
                         <ListItem>Posted By: {deck.userProfile?.name}</ListItem>
                         <ListItem>{deck.cards?.map((card) => (
                            <div key={card.id}>
-                            <ListItem>Card Name: {card.name}</ListItem>
+                            <div> <img src={card.image}/> </div>  
                             {/* <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
                             <ListItem>Colors: {card.colors}</ListItem>  */}

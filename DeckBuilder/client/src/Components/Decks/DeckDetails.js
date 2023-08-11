@@ -9,6 +9,7 @@ import { searchCards } from "../Managers/SearchManager";
 import EditIcon from '@mui/icons-material/Edit';
 import { DeckMagicCards } from "./DeckMagicCards";
 import { deleteCard, deleteCardFromDeck, getCardById } from "../Managers/CardManager";
+import { de } from "date-fns/locale";
 
 export const DeckDetails = () => {
     const [deck, setDeck] = useState();
@@ -115,11 +116,11 @@ return ( <>
         
         
             {deleteButton()}
-        {editButton()} <Card>
+        {editButton()} 
             <ListItem>User Name: {deck.userProfile?.name}</ListItem>
             <ListItem>Deck Name: {deck.name}</ListItem>
             <ListItem>Format: {deck.format}</ListItem>
-            <ListItem>
+            <ListItem> <Grid container spacing={2.5}>
               {deck.cards?.map((card) => (
                            <div key={card.id}>
                             <div> <img src={card.image}/> </div>  
@@ -134,8 +135,8 @@ return ( <>
                     ""
                   }
                         </div>
-                        ))} </ListItem>  
-      </Card>
+                        ))} </Grid></ListItem>  
+      
       </Typography>
 
       
