@@ -34,7 +34,7 @@ export const deleteDeck = (id) => {
     .then(() => getAllDecks())
 };
     
-export const editPost = (deck) => {
+export const editDeck = (deck) => {
     console.log(deck)
     return fetch(`${apiUrl}/${deck.Id}`, {
         method: "PUT",

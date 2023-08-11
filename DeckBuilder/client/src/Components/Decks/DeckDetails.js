@@ -6,7 +6,7 @@ import React from "react";
 import { Button, Card, CardActions, CardContent, Container, Grid, IconButton, ListItem, TextField, Typography } from "@mui/material";
 import { deleteDeck, getDeckById, getUserDeckById } from "../Managers/DeckManager";
 import { searchCards } from "../Managers/SearchManager";
-
+import EditIcon from '@mui/icons-material/Edit';
 import { DeckMagicCards } from "./DeckMagicCards";
 import { deleteCard, deleteCardFromDeck, getCardById } from "../Managers/CardManager";
 
@@ -83,14 +83,14 @@ const alertClick = () => {
           };
         
         
-          const deleteButton2 = () => {
+          const editButton = () => {
             if (deck.userProfileId === dbUserObject.id) {
-                return <IconButton onClick={ alertClick2 } className="post-finish"><DeleteIcon /></IconButton>}
-        
-                else {
-                  return ""
-                }}
-             
+              return <IconButton onClick={() => navigate(`/deck/edit/${deck.id}`)} className="deck-finish"><EditIcon /></IconButton>}
+      
+              else {
+                return ""
+              }
+          }
 
 
 
@@ -108,24 +108,25 @@ return ( <>
         
           
        <Typography gutterBottom variant="h5" component="div">
-        
+        <TextField id="outlined-basic"  label="Search"  variant="outlined" />
         <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllCards} >Search</Button>
-        <Button variant="outlined" color="secondary" type="submit">Save Deck</Button> 
-        {deleteButton()}
+        {/* <Button variant="outlined" color="secondary" type="submit">Save Deck</Button>  */}
         
-        <TextField id="outlined-basic"  label="Search"  variant="outlined" 
-            /> <Card>
+        
+        
+            {deleteButton()}
+        {editButton()} <Card>
             <ListItem>User Name: {deck.userProfile?.name}</ListItem>
             <ListItem>Deck Name: {deck.name}</ListItem>
             <ListItem>Format: {deck.format}</ListItem>
             <ListItem>
               {deck.cards?.map((card) => (
                            <div key={card.id}>
-                            <div> <img src={card.image_uris?.small}/> </div>  
-                            <ListItem>Card Name: {card.name}</ListItem>
+                            <div> <img src={card.image}/> </div>  
+                            {/* <ListItem>Card Name: {card.name}</ListItem>
                             <ListItem>ManaCost: {card.manaCost}</ListItem>
                             <ListItem>CMC: {card.cmc}</ListItem> 
-                            <ListItem>Colors: {card.colors}</ListItem> 
+                            <ListItem>Colors: {card.colors}</ListItem>  */}
                             { (deck.userProfileId === dbUserObject.id) ?
                   <IconButton onClick={ () => alertClick2(card.id) } className="post-finish"><DeleteIcon /></IconButton>
           

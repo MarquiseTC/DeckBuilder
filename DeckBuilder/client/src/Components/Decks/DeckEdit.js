@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getAllCards } from "../Managers/CardManager";
 import { useEffect } from "react";
-import { addDeck, getDeckById } from "../Managers/DeckManager";
+import { addDeck, editDeck, getDeckById } from "../Managers/DeckManager";
 import { Box, Container, FormControl, FormLabel, Stack, TextField } from "@mui/material";
 import { Button } from "reactstrap";
 import { MagicCards } from "../Cards/Cards";
@@ -42,7 +42,7 @@ useEffect(() => {
     .then((deckArray) => {
         update(deckArray)
     })
-}, [deckId])
+}, [deckId]);
 
 const handleSaveButtonClick = (event) => {
     event.preventDefault()
@@ -51,6 +51,7 @@ const handleSaveButtonClick = (event) => {
 
 
 const deckToEdit ={
+    Id: parseInt(deckId),
     UserProfileId:dbUserObject.id,
     Name: deck.name,
     Format: deck.format,
@@ -60,10 +61,12 @@ const deckToEdit ={
     
     
 }
-return addDeck(deckToSendToApi)
-        .then( returnedDeck=> {
-        navigate(`/deck/${returnedDeck.id}`)
+return editDeck(deckToEdit)
+        .then(()=>{
+             navigate(`/deck/${deckId}`)
         })
+       
+        
     
     };
 
@@ -118,7 +121,7 @@ return (
                  
             
             
-            <Button color="inherit" type="submit" onClick={handleSaveButtonClick}> Create Deck </Button>
+            <Button color="inherit" type="submit" onClick={handleSaveButtonClick}> Save Deck </Button>
             
            
         {/* onClick={() => navigate(`/deck/${deck.id}`)} */}

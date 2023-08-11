@@ -10,6 +10,7 @@ import { CardSearch } from "../Cards/CardSearch";
 import { MultiLineTextFields } from "../Cards/AdvancedContainer";
 import { DeckDetails } from "../Decks/DeckDetails";
 import { DeckForm } from "../Decks/DeckForm";
+import { DeckEdit } from "../Decks/DeckEdit";
 
 
 
@@ -27,6 +28,7 @@ export const ApplicationViews = () => {
 			<Route path="/advanced" element={<MultiLineTextFields/>}/> 
 			<Route path="/deck/:id" element ={<DeckDetails/>} />
 			<Route path="/create" element ={<DeckForm/>} />
+			<Route path="/deck/edit/:deckId" element={<DeckEdit />} />
 		</Routes>
 	
 	);

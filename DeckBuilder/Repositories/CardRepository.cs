@@ -17,7 +17,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd  = conn.CreateCommand()) 
                 {
                     cmd.CommandText = @"
-                   SELECT Id, Name, ManaCost, CMC, Colors
+                   SELECT Id, Name, ManaCost, CMC, Colors, Image
                     From Card";
 
                     var reader = cmd.ExecuteReader();
@@ -31,7 +31,7 @@ namespace DeckBuilder.Repositories
                             ManaCost = DbUtils.GetString(reader, "ManaCost"),
                             CMC = DbUtils.GetInt(reader, "CMC"),
                             Colors = DbUtils.GetString(reader, "Colors"),
-                            
+                            Image = DbUtils.GetString(reader, "Image"),
                         });
                     
                     }
@@ -49,7 +49,7 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand()) 
                 {
                     cmd.CommandText = @"
-                   SELECT Id, Name, ManaCost, CMC, Colors
+                   SELECT Id, Name, ManaCost, CMC, Colors, Image
                     From Card
                     Where Id = @Id";
 
@@ -65,8 +65,9 @@ namespace DeckBuilder.Repositories
                             Name = DbUtils.GetString(reader, "Name"),
                             ManaCost = DbUtils.GetString(reader, "ManaCost"),
                             CMC = DbUtils.GetInt(reader, "CMC"),
-                            Colors = DbUtils.GetString(reader, "Colors")
-                            
+                            Colors = DbUtils.GetString(reader, "Colors"),
+                            Image = DbUtils.GetString(reader, "Image"),
+
                         };
 
                     }
@@ -86,14 +87,15 @@ namespace DeckBuilder.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                     INSERT INTO CARD (Name, ManaCost, CMC, Colors)
+                     INSERT INTO CARD (Name, ManaCost, CMC, Colors, Image)
                      OUTPUT INSERTED.ID
-                    VALUES(@Name, @ManaCost, @CMC, @Colors)";
+                    VALUES(@Name, @ManaCost, @CMC, @Colors,@Image)";
 
                     DbUtils.AddParameter (cmd, "@Name", card.Name);
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
                     DbUtils.AddParameter(cmd, "@CMC", card.CMC);
                     DbUtils.AddParameter(cmd, "@Colors", card.Colors);
+                    DbUtils.AddParameter(cmd, "@Image", card.Image);
                     
 
                     card.Id = (int)cmd.ExecuteScalar ();
@@ -127,13 +129,14 @@ namespace DeckBuilder.Repositories
                         ManaCost = @ManaCost,
                         CMC = @CMC,
                         Colors = @Colors
+                        Image = @Image
                         
                         Where Id = @Id";
                     DbUtils.AddParameter(cmd, "@Name", card.Name);
                     DbUtils.AddParameter(cmd, "@ManaCost", card.ManaCost);
                     DbUtils.AddParameter(cmd, "@CMC", card.CMC);
                     DbUtils.AddParameter(cmd, "@Colors", card.Colors);
-                    
+                    DbUtils.AddParameter(cmd, "@Image", card.Image);
 
                     cmd.ExecuteNonQuery();
                 }
