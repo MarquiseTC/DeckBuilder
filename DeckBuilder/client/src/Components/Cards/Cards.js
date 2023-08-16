@@ -31,20 +31,20 @@ const navigate = useNavigate();
     
     return (
         <Container>
-    <Card sx={{ maxWidth: 500}} >
+    <Card sx={{ maxWidth: 1500}} >
         <div> <img src={card.image_uris?.normal}/> </div>  
         
-        <CardContent>
-            <List>
+        
+            {/* <List>
             <ListItem></ListItem>
             <ListItem>Card Name: {card.name}</ListItem>
             <ListItem>ManaCost: {card?.mana_cost}</ListItem>
             <ListItem>CMC: {card?.cmc}</ListItem>
             <ListItem>Colors: {card?.colors}</ListItem>
             
-            </List>
+            </List> */}
             {/* <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}>Add Card</Button> */}
-        </CardContent>
+        
         
     </Card>
     </Container>

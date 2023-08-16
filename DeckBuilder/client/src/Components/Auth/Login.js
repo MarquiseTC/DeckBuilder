@@ -34,14 +34,14 @@ export const Login = ({setIsLoggedIn}) => {
             label="Email"
             id="email"
             variant="outlined"
-            color="secondary"
+            color="primary"
             type="text"
             sx={{mb:2}}
             fullWidth
             onChange={e => setEmail(e.target.value)}
             required
             />
-            <Button variant="outlined" color="secondary" type="sumbit">Sign in</Button>
+            <Button variant="outlined" color="inherit" type="sumbit">Sign in</Button>
         </form>
         <small>Need to register? <Link to="/register">Register here</Link></small>
     </React.Fragment>

@@ -110,7 +110,7 @@ return ( <>
           
        <Typography gutterBottom variant="h5" component="div">
         <TextField id="outlined-basic"  label="Search"  variant="outlined" />
-        <Button variant="outlined" color="secondary"  type="sumbit" onClick={searchAllCards} >Search</Button>
+        <Button variant="outlined" color="inherit"  type="sumbit" onClick={searchAllCards} >Search</Button>
         {/* <Button variant="outlined" color="secondary" type="submit">Save Deck</Button>  */}
         
         

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { getDeckById, getUserDeckById } from "../Managers/DeckManager";
 import { Deck } from "./Deck";
+import { Card } from "@mui/material";
 
 
 export const UserDecks = () => {

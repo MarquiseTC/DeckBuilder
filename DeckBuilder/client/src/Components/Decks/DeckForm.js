@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { getAllCards } from "../Managers/CardManager";
 import { useEffect } from "react";
 import { addDeck } from "../Managers/DeckManager";
-import { Box, Container, FormControl, FormLabel, Stack, TextField } from "@mui/material";
-import { Button } from "reactstrap";
+import { Box, Button, Container, Stack, TextField, ThemeProvider, FormControl, FormLabel, RadioGroup, Radio, FormControlLabel } from "@mui/material";
+
 import { MagicCards } from "../Cards/Cards";
 import { searchCards } from "../Managers/SearchManager";
+import theme from "../Views/Styles";
 
 export const DeckForm = () => {
     const localDBUser = localStorage.getItem("userProfile");
@@ -58,27 +59,26 @@ return addDeck(deckToSendToApi)
     
     };
 
-        
+    const selectList = (event) => {
+        const copy = {
+            ...deck
+        }
+        copy.format = event.target.value
+        update(copy)
+    }
 
 return (
-    <>
+    
     
         <Container >
         <form autoComplete="off"   >
             <h2>Deck Form</h2>
             <Stack spacing={2} direction="column" sx={{marginBottom: 1}} >
-            <Box>
-    <FormControl>
-        <FormLabel id='deck'>
-            New Deck
-        </FormLabel >
-       
-    </FormControl>
-</Box>      
+               
                  <TextField
            type="text" 
            variant="outlined" 
-            color="secondary"        
+            color="primary"        
             label="Deck Name"        
             onChange={
                 (evt) => {
@@ -91,25 +91,22 @@ return (
                  />
               
             
-                 <TextField
-           type="text" 
-           variant="outlined" 
-            color="secondary"        
-            label="Format"        
-            onChange={
-                (evt) => {
-                    const copy = {...deck}
-                    copy.format = evt.target.value
-                    update(copy)}}
-                    value={deck.format}        
-                    fullWidth
-                    required
-                    sx={{mb: 4}}
-                 />
+              <RadioGroup name='meal-of-the-day-group' value={deck.format}   aria-labelledby='meal-of-the-day-group'onChange={
+                    (evt) => {
+                        const copy = {...deck}
+                        copy.format = evt.target.value
+                        update(copy)}}>
+            <FormControlLabel control={<Radio/>} label='Standard' value='Standard'/>
+            <FormControlLabel control={<Radio/>} label='Commander' value='Commander'/>
+            <FormControlLabel control={<Radio/>} label='Modern' value='Modern'/>
+            <FormControlLabel control={<Radio/>} label='Legacy' value='Legacy'/>
+            <FormControlLabel control={<Radio/>} label='Casual' value='Casual'/>
+                        
+            </RadioGroup>
                  
             
             
-            <Button color="inherit" type="submit" onClick={handleSaveButtonClick}> Create Deck </Button>
+            <Button variant="outlined" color="primary" type="submit" onClick={handleSaveButtonClick}> Create Deck </Button>
             
            
         {/* onClick={() => navigate(`/deck/${deck.id}`)} */}
@@ -151,7 +148,7 @@ return (
             </Container>  
      
        
-    </>
+    
 )
 
 
