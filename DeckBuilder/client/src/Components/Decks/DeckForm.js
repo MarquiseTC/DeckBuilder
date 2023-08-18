@@ -91,7 +91,7 @@ return (
                  />
               
             
-              <RadioGroup name='meal-of-the-day-group' value={deck.format}   aria-labelledby='meal-of-the-day-group'onChange={
+              <RadioGroup name='deck formats' value={deck.format}   aria-labelledby='deck formats'onChange={
                     (evt) => {
                         const copy = {...deck}
                         copy.format = evt.target.value

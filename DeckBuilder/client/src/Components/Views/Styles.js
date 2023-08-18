@@ -44,8 +44,8 @@ const theme  =  createTheme( {
       main: '#29b6f6',
     },
     background: {
-        paper: '#c5cae9',
-        default: '#c5cae9',
+        paper: '#bccbde',
+        default: '#bccbde',
       },
     text: {
         primary: '#1a1919',
@@ -62,6 +62,12 @@ const theme  =  createTheme( {
     body2: {
       fontFamily: 'Roboto',
     },
+    // body1:{
+    //   backgroundImage: 
+    //   "url('https://1000logos.net/wp-content/uploads/2022/10/Magic-The-Gathering-logo.png')",
+    //   backgroundPosition: "center",
+    //   backgroundSize: "cover"
+    // },
     subtitle1: {
       fontSize: '1rem',
       fontFamily: 'Droid Serif',

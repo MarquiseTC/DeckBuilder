@@ -24,7 +24,7 @@ export const ButtonAppBar = ({ isLoggedIn, setIsLoggedIn }) => {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#e9e4c5"
+        main: "#e6e9f0"
       }
     }
   });

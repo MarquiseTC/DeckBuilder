@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getAllCards } from "../Managers/CardManager";
 import { useEffect } from "react";
 import { addDeck, editDeck, getDeckById } from "../Managers/DeckManager";
-import { Box, Container, FormControl, FormLabel, Stack, TextField } from "@mui/material";
+import { Box, Container, FormControl, FormLabel, Stack, TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { Button } from "reactstrap";
 import { MagicCards } from "../Cards/Cards";
 import { searchCards } from "../Managers/SearchManager";
@@ -103,21 +103,18 @@ return (
                  />
               
             
-                 <TextField
-           type="text" 
-           variant="outlined" 
-            color="secondary"        
-            label="Format"        
-            onChange={
-                (evt) => {
-                    const copy = {...deck}
-                    copy.format = evt.target.value
-                    update(copy)}}
-                    value={deck.format}        
-                    fullWidth
-                    required
-                    sx={{mb: 4}}
-                 />
+              <RadioGroup name='deck formats' value={deck.format}   aria-labelledby='deck formats'onChange={
+                    (evt) => {
+                        const copy = {...deck}
+                        copy.format = evt.target.value
+                        update(copy)}}>
+            <FormControlLabel control={<Radio/>} label='Standard' value='Standard'/>
+            <FormControlLabel control={<Radio/>} label='Commander' value='Commander'/>
+            <FormControlLabel control={<Radio/>} label='Modern' value='Modern'/>
+            <FormControlLabel control={<Radio/>} label='Legacy' value='Legacy'/>
+            <FormControlLabel control={<Radio/>} label='Casual' value='Casual'/>
+                        
+            </RadioGroup>
                  
             
             
