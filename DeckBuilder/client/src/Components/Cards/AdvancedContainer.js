@@ -66,7 +66,7 @@ const whatType = (e) => {
           id="outlined-multiline-flexible" label="Colors" multiline
           maxRows={4}
        fixed /> 
-        <Button variant="outlined" color="secondary"  type="sumbit" onClick={manaCostSearch} >Search</Button>
+        <Button variant="outlined" color="inherit"  type="sumbit" onClick={manaCostSearch} >Search</Button>
        
    
    
@@ -78,7 +78,7 @@ const whatType = (e) => {
           onChange={e => setQuery(e.target.value)}
           fixed
         />
-                <Button variant="outlined" color="secondary"  type="sumbit" onClick={manaValueSearch} >Search</Button>
+                <Button variant="outlined" color="inherit"  type="sumbit" onClick={manaValueSearch} >Search</Button>
         
       
       <div>
@@ -89,7 +89,7 @@ const whatType = (e) => {
           maxRows={4}
           onChange={e => setQuery(e.target.value)}
        fixed />
-        <Button variant="outlined" color="secondary"  type="sumbit" onClick={isItLegal} >Search</Button>
+        <Button variant="outlined" color="inherit"  type="sumbit" onClick={isItLegal} >Search</Button>
         <TextField
           id="outlined-textarea"
           label="Type"
@@ -97,7 +97,7 @@ const whatType = (e) => {
           multiline
           onChange={e => setQuery(e.target.value)}
        fixed />
-        <Button variant="outlined" color="secondary"  type="sumbit" onClick={whatType} >Search</Button>
+        <Button variant="outlined" color="inherit"  type="sumbit" onClick={whatType} >Search</Button>
       </div>
       {/* <div>
         <TextField

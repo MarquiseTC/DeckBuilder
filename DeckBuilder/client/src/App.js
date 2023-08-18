@@ -8,8 +8,11 @@ import { AppBar, ThemeProvider, createTheme } from '@mui/material';
 import { ApplicationViews } from './Components/Views/ApplicationViews';
 import { ButtonAppBar, Header } from './Components/Views/AppBar';
 import { Authorize } from './Components/Views/Authorize';
+import theme from './Components/Views/Styles';
 
 function App() {
+
+    
     const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 
@@ -30,7 +33,7 @@ function App() {
                 <Authorize  setIsLoggedIn={setIsLoggedIn} />
          }
         </Router>
-    );
+   );
 }
 
 export default App;

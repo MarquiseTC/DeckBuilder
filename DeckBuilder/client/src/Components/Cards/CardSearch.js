@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { searchCards } from "../Managers/SearchManager";
-import { Button, Card, Container } from "reactstrap";
+import {  Card, Container } from "reactstrap";
 import TextField from "@mui/material/TextField";
 import { MagicCards } from "./Cards";
 import { useNavigate } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 
 
 export const CardSearch = () => {
@@ -40,15 +40,15 @@ export const CardSearch = () => {
 
           fixed
       >
-        <TextField id="outlined-basic" label="Search" variant="outlined"
+        <TextField color="primary"  id="outlined-basic" label="Search" variant="outlined"
         />
 
-        <Button variant="outlined" color="secondary" type="sumbit" onClick={searchAllCards} >Search</Button>
-        <Button color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
+        <Button variant="outlined" color="inherit" type="sumbit" onClick={searchAllCards} >Search</Button>
+        <Button variant="outlined" color="inherit" type="submit" onClick={() => navigate("/advanced")}>Advanced Search</Button>
         
 
       </Container>
-      <Grid container spacing={3}>
+      <Grid container spacing={.5}>
         {cards.map((card) => {
 
           return <MagicCards key={card.id} card={card} />

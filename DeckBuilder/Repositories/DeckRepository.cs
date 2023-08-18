@@ -149,7 +149,7 @@ namespace DeckBuilder.Repositories
                     {
 
                         var userProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
-                        var existingDeck = decks.FirstOrDefault(d => d.Id == userProfileId);
+                        var existingDeck = decks.FirstOrDefault(d => d.Id == DbUtils.GetInt(reader, "DeckId"));
                         if (existingDeck == null)
                         {
                             existingDeck = new Deck()
@@ -302,7 +302,7 @@ namespace DeckBuilder.Repositories
                 Left join UsedCards uc on d.id = uc.Deckid
                 Left Join Card c on uc.CardId = c.Id
                 Left Join UserProfile u on d.UserProfileId = u.Id
-                Where d.Name LIKE @Criterion
+                Where d.Format LIKE @Criterion
                 ";
                     if (sortDescending)
                     {
@@ -323,7 +323,7 @@ namespace DeckBuilder.Repositories
                     {
 
                         var deckUserProfileId = DbUtils.GetInt(reader, "DeckUserProfileId");
-                        var existingDeck = decks.FirstOrDefault(d => d.Id == deckUserProfileId);
+                        var existingDeck = decks.FirstOrDefault(d => d.Id == DbUtils.GetInt(reader, "DeckId"));
                         if (existingDeck == null)
                         {
                             existingDeck = new Deck()

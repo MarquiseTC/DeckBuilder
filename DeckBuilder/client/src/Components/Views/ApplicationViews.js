@@ -11,6 +11,8 @@ import { MultiLineTextFields } from "../Cards/AdvancedContainer";
 import { DeckDetails } from "../Decks/DeckDetails";
 import { DeckForm } from "../Decks/DeckForm";
 import { DeckEdit } from "../Decks/DeckEdit";
+import { ThemeProvider } from "@mui/material";
+import theme from "./Styles";
 
 
 

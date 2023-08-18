@@ -4,18 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material';
-import { themeOptions } from './Components/Views/Styles';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import theme, { themeOptions } from './Components/Views/Styles';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
- 
-  
+<ThemeProvider theme={theme}>
+     <CssBaseline/>
       <App/>
       
- 
+</ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

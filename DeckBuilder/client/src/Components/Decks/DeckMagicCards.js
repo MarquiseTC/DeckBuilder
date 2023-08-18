@@ -1,11 +1,11 @@
 import React from "react";
 import Card  from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { Alert, IconButton, List, ListItem } from "@mui/material";
+import { Alert, Button, IconButton, List, ListItem } from "@mui/material";
 import { Container } from "reactstrap";
 import { addCard, deleteCard, saveCardToDeck } from "../Managers/CardManager";
 import { useNavigate } from "react-router-dom";
-import { Button } from "reactstrap";
+
 import DeleteIcon from '@mui/icons-material/Delete'
 
 export const DeckMagicCards = ({card, deckId}) => {
@@ -64,7 +64,7 @@ export const DeckMagicCards = ({card, deckId}) => {
                 
                 </List>
                 
-                <Button className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}  >Add to deck</Button>
+                <Button variant="outlined" color="inherit" className="btn btn-primary"  onClick={(clickEvent) => handleSaveButtonClick(clickEvent)}  >Add to deck</Button>
              
             </CardContent>
             
